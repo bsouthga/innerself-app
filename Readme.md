@@ -22,6 +22,14 @@ cd my-app
 npm start
 ```
 
+## Building your app
+
+To produce a production build of your new app, run...
+
+```shell
+npm run build
+```
+
 ## CLI
 
 ```
@@ -37,12 +45,4 @@ npm start
     -t, --typescript  create a typescript innerself app
     -i, --init        create a new innerself app in this directory
     -h, --help        output usage information
-```
-
-## Building your app
-
-To produce a production build of your new app, run...
-
-```shell
-npm run build
 ```
