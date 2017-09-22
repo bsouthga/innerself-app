@@ -130,6 +130,7 @@ async function createJSApp(template: string, absdir: string) {
   await fs.copy(tmp, absdir, { recursive: true });
 
   await fs.remove(path.join(absdir, './src/state.js'));
+  await fs.remove(path.join(absdir, './tsconfig.json'));
 
   const packageJSON = await getPackageJson(absdir);
   delete packageJSON['devDependencies']['rollup-plugin-typescript2'];
