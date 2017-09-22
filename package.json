@@ -1,0 +1,32 @@
+{
+  "name": "innerself-app",
+  "description": "bootstrap a simple innerself app",
+  "author": {
+    "email": "bsouthga@gmail.com",
+    "name": "Ben Southgate"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "bin": "dist/cli.js",
+  "dependencies": {
+    "commander": "^2.11.0",
+    "fs-extra": "^4.0.2",
+    "glob": "^7.1.2",
+    "prettier": "^1.7.0",
+    "typescript": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/commander": "^2.9.2",
+    "@types/fs-extra": "^4.0.2",
+    "@types/glob": "^5.0.32",
+    "@types/node": "^8.0.29",
+    "@types/prettier": "^1.7.0",
+    "innerself": "^0.1.1",
+    "rollup": "^0.50.0",
+    "rollup-plugin-typescript": "^0.8.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc -w"
+  }
+}

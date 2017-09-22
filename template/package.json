@@ -1,0 +1,21 @@
+{
+  "name": "my-innerself-app",
+  "version": "0.0.0",
+  "scripts": {
+    "rollup": "rollup -c ./rollup.config.js",
+    "start": "npm run rollup -- -w",
+    "build": "export NODE_ENV='production' && npm run rollup"
+  },
+  "dependencies": {
+    "innerself": "^0.1.1"
+  },
+  "devDependencies": {
+    "rollup": "^0.50.0",
+    "rollup-plugin-livereload": "^0.6.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-serve": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.5.2",
+    "rollup-plugin-uglify": "^2.0.1",
+    "uglify-es": "^3.1.1"
+  }
+}
