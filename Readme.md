@@ -1,4 +1,5 @@
 # Bootstrap a simple [innerself](https://github.com/stasm/innerself) app
+[![npm version](https://badge.fury.io/js/innerself-app.svg)](https://badge.fury.io/js/innerself-app)
 
 ## Installing
 
