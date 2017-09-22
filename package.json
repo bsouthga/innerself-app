@@ -27,6 +27,7 @@
     "rollup-plugin-typescript": "^0.8.1"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "build": "tsc",
     "start": "tsc -w"
   }
