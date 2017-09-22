@@ -38,3 +38,11 @@ npm start
     -i, --init        create a new innerself app in this directory
     -h, --help        output usage information
 ```
+
+## Building your app
+
+To produce a production build of your new app, run...
+
+```shell
+npm run build
+```
