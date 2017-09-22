@@ -9,7 +9,7 @@ const package$json = require('../package.json');
 
 const program = commander
   .version(package$json.version)
-  .description('bootstrap a new innserself app')
+  .description('bootstrap a new innerself app')
   .usage('[options] <dirname>')
   .option('-t, --typescript', 'create a typescript innerself app')
   .option('-i, --init', 'create a new innerself app in this directory')

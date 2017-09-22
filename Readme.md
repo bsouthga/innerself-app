@@ -26,7 +26,7 @@ npm start
 
 ```
 
-  Usage: innerself-app [options] <dirname>
+  Usage: innerelf-app [options] <dirname>
 
   bootstrap a new innserself app
 
