@@ -41,7 +41,14 @@ export async function createProject(options: Options) {
 
   await installDependencies(absdir);
 
-  log('done!');
+  log(`done!
+
+    To start developing, change to your directory
+    and start the dev server...
+
+      ~$ cd ${absdir}
+      ~$ npm start
+  `);
 }
 
 /**
