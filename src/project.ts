@@ -28,6 +28,11 @@ export async function createProject(options: Options) {
 
   if (ensureDirectory(absdir)) return;
 
+  if ((await fs.readdir(absdir)).length) {
+    log(`directory ${absdir} is not empty, exiting.`);
+    return;
+  }
+
   if (typescript) {
     await createTSApp(template, absdir);
   } else {
