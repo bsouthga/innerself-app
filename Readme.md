@@ -33,7 +33,7 @@ npm run build
 ## CLI
 
 ```
-  Usage: cli [options] <dirname>
+  Usage: innerself-app [options] <dirname>
 
   bootstrap a new innerself app
 
