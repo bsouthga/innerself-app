@@ -92,7 +92,8 @@ function ensureDirectory(directory: string) {
  */
 async function createTSApp(template: string, absdir: string) {
   log(`creating new typescript app in ${absdir}...`);
-  return fs.copy(template, absdir, { recursive: true });
+  await fs.copy(template, absdir, { recursive: true });
+  await cleanTSProject(absdir);
 }
 
 /**
@@ -171,6 +172,38 @@ async function hackyReformatJS(file: string) {
       .replace(/\n\s+typescript\(\),/g, '')
       .replace("input: 'src/index.ts',", "input: 'src/index.js',")
       .replace("\nimport typescript from 'rollup-plugin-typescript2';", '')
+  );
+}
+
+/**
+ * removes non-TS project files + deps
+ *
+ * @param absdir absolute path to project directory
+ */
+async function cleanTSProject(absdir: string) {
+  const packageJSON = await getPackageJson(absdir);
+  const remove = [
+    'babel-core',
+    'babel-plugin-external-helpers',
+    'babel-preset-es2015',
+    'rollup-plugin-babel'
+  ];
+
+  remove.forEach(name => {
+    delete packageJSON['devDependencies'][name];
+  });
+
+  await fs.remove(path.join(absdir, './.babelrc'));
+
+  const rollupPath = path.join(absdir, './rollup.config.js');
+  const rollupFile = await fs.readFile(rollupPath);
+  const rollupFileString = rollupFile.toString();
+
+  await fs.writeFile(
+    rollupPath,
+    rollupFileString
+      .replace(`import babel from 'rollup-plugin-babel';`, '')
+      .replace(/\]\),\n\s+babel\(\)/, '])\n')
   );
 }
 
