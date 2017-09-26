@@ -6,6 +6,10 @@
     "email": "bsouthga@gmail.com",
     "name": "Ben Southgate"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bsouthga/innerself-app"
+  },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "bin": "dist/cli.js",
