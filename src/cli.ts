@@ -7,7 +7,9 @@ import { createProject } from './project';
 
 const package$json = require('../package.json');
 
-const program = commander
+type NameFunction = (name: string) => typeof commander;
+
+const program = ((commander.name as any) as NameFunction)('innerself-app')
   .version(package$json.version)
   .description('bootstrap a new innerself app')
   .usage('[options] <dirname>')
