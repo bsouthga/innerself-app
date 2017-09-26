@@ -1,5 +1,9 @@
 # Changelog
 
+## `0.0.5`
+
+- fix typo in help text
+
 ## `0.0.4`
 
 - adds babel compilation by default for JS projects
