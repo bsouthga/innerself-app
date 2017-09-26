@@ -13,7 +13,7 @@ const DIR = __dirname;
 export interface Options {
   directory: string;
   typescript?: boolean;
-  babel?: boolean;
+  esnext?: boolean;
 }
 
 /**
@@ -22,7 +22,7 @@ export interface Options {
  * @param options
  */
 export async function createProject(options: Options) {
-  const { directory, typescript, babel } = options;
+  const { directory, typescript, esnext } = options;
   const absdir = absolutize(directory);
   const template = path.join(DIR, '../template');
 
@@ -36,7 +36,7 @@ export async function createProject(options: Options) {
   if (typescript) {
     await createTSApp(template, absdir);
   } else {
-    await createJSApp(template, absdir);
+    await createJSApp(template, absdir, options);
   }
 
   await installDependencies(absdir);
@@ -93,7 +93,7 @@ function ensureDirectory(directory: string) {
 async function createTSApp(template: string, absdir: string) {
   log(`creating new typescript app in ${absdir}...`);
   await fs.copy(template, absdir, { recursive: true });
-  await cleanTSProject(absdir);
+  await removeBabelFromProject(absdir);
 }
 
 /**
@@ -102,7 +102,11 @@ async function createTSApp(template: string, absdir: string) {
  * @param template template folder
  * @param absdir absolute path to new app folder
  */
-async function createJSApp(template: string, absdir: string) {
+async function createJSApp(
+  template: string,
+  absdir: string,
+  opts: { esnext?: boolean }
+) {
   log(`creating new app in ${absdir}...`);
   const tmp = path.join(absdir, `./____innerself-tmp-dir___`);
   ensureDirectory(tmp);
@@ -129,6 +133,10 @@ async function createJSApp(template: string, absdir: string) {
   ]);
 
   await fs.copy(tmp, absdir, { recursive: true });
+
+  if (opts.esnext) {
+    await removeBabelFromProject(absdir);
+  }
 
   await fs.remove(path.join(absdir, './src/state.js'));
   await fs.remove(path.join(absdir, './tsconfig.json'));
@@ -176,11 +184,11 @@ async function hackyReformatJS(file: string) {
 }
 
 /**
- * removes non-TS project files + deps
+ * removes removes babel from project
  *
  * @param absdir absolute path to project directory
  */
-async function cleanTSProject(absdir: string) {
+async function removeBabelFromProject(absdir: string) {
   const packageJSON = await getPackageJson(absdir);
   const remove = [
     'babel-core',
@@ -192,6 +200,10 @@ async function cleanTSProject(absdir: string) {
   remove.forEach(name => {
     delete packageJSON['devDependencies'][name];
   });
+  await fs.writeFile(
+    path.join(absdir, './package.json'),
+    JSON.stringify(packageJSON)
+  );
 
   await fs.remove(path.join(absdir, './.babelrc'));
 

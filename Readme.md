@@ -33,16 +33,16 @@ npm run build
 ## CLI
 
 ```
+  Usage: cli [options] <dirname>
 
-  Usage: innerself-app [options] <dirname>
-
-  bootstrap a new innserself app
+  bootstrap a new innerself app
 
 
   Options:
 
     -V, --version     output the version number
     -t, --typescript  create a typescript innerself app
+    -e, --esnext      don't include babel for a js project
     -i, --init        create a new innerself app in this directory
     -h, --help        output usage information
 ```

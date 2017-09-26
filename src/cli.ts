@@ -12,6 +12,7 @@ const program = commander
   .description('bootstrap a new innerself app')
   .usage('[options] <dirname>')
   .option('-t, --typescript', 'create a typescript innerself app')
+  .option('-e, --esnext', "don't include babel for a js project")
   .option('-i, --init', 'create a new innerself app in this directory')
   .parse(process.argv);
 
@@ -24,7 +25,8 @@ if (!dirname && !program.init) {
 
 createProject({
   directory: dirname || '.',
-  typescript: !!program.typescript
+  typescript: !!program.typescript,
+  esnext: !!program.esnext
 }).catch(err => {
   console.error(err);
 });
