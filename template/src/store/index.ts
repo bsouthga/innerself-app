@@ -30,7 +30,7 @@ export function dispatch(action: Action, toString?: boolean) {
     return `'event.preventDefault();dispatch(${actionString})';`;
   }
 
-  return setTimeout(originalDispatch, 0, action);
+  return originalDispatch(action);
 }
 
 export * from './state';
